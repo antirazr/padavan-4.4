@@ -46,6 +46,11 @@ if [ $(nvram get pppoemwan_enable) = 1 ] ; then
 sleep 20
 fi
 
+if [ $(nvram get ss_enable) = 1 ] ; then
+logger -t "自动启动" "正在启动科学上网"
+/usr/bin/shadowsocks.sh start
+fi
+
 if [ $(nvram get adbyby_enable) = 1 ] ; then
 logger -t "自动启动" "正在启动adbyby plus+"
 /usr/bin/adbyby.sh start
@@ -54,11 +59,6 @@ fi
 if [ $(nvram get aliddns_enable) = 1 ] ; then
 logger -t "自动启动" "正在启动阿里ddns"
 /usr/bin/aliddns.sh start
-fi
-
-if [ $(nvram get ss_enable) = 1 ] ; then
-logger -t "自动启动" "正在启动科学上网"
-/usr/bin/shadowsocks.sh start
 fi
 
 if [ $(nvram get adg_enable) = 1 ] ; then
